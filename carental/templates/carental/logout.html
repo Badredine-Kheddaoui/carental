@@ -1,0 +1,15 @@
+{% extends "carental/base.html" %}
+{% block body %}
+    <main role="main" class="container d-flex justify-content-center">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>You have been logged out</h2>
+                <div class="border-top pt-3">
+                    <small class="text-muted">
+                        <a href="{% url 'login' %}">Log In Again</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock body %}

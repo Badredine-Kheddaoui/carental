@@ -1,0 +1,22 @@
+{% extends 'carental/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Add cars
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <main role="main" class="container d-flex justify-content-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="{% url 'add_car' %}" method="POST">
+                        {% csrf_token %}
+                        {{ carForm|crispy }}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+{% endblock %}

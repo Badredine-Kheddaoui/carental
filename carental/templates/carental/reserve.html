@@ -1,0 +1,121 @@
+{% extends 'carental/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Add reservation
+{% endblock %}
+
+{% block promotion %}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <main role="main" class="container d-flex justify-content-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="notification"></div>
+                    {#                    <div id="error"></div>#}
+                    <form method="POST" id="reserve_form">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="car_id" value="{{ car.id }}">
+                        <input type="hidden" name="price" value="{{ car.price }}">
+
+                        <div class="form-group">
+                            <label for="id_car" class=" requiredField">Car</label>
+                            <div class="input-group">
+                                <input type="text" value="{{ car.name }}" class="form-control" disabled>
+                            </div>
+                        </div>
+
+
+                        {#                        {{ reservationForm|crispy }}#}
+
+                        <div id="div_id_date" class="form-group"><label for="id_date" class=" requiredField">
+                            Date<span class="asteriskField">*</span> </label>
+                            <div class=""><input type="date" name="date"
+                                                 class="dateinput form-control" required id="id_date"></div>
+                        </div>
+
+                        <div id="div_id_time" class="form-group"><label for="id_time" class="requiredField">
+                            Time<span class="asteriskField">*</span> </label>
+                            <select name="time" class="custom-select my-1 mr-sm-2" id="id_time" required>
+                                <option value="07" selected>07:00</option>
+                                {% for option in time_list %}
+                                    <option value="{{ option }}">{{ option }}:00</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+                        <div id="div_id_duration" class="form-group"><label for="id_duration" class=" requiredField">
+                            Duration<span class="asteriskField">*</span> (Days)</label>
+                            <select name="duration" class="custom-select my-1 mr-sm-2" id="id_duration" required>
+                                <option value="1" selected>1</option>
+                                {% for option in duration_list %}
+                                    <option value="{{ option }}">{{ option }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <button type="submit" id="submit-button" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            let today = new Date();
+            let dateInput = $('#id_date');
+            let timeInput = $('#id_time');
+            let notification = $('#notification');
+            let todayDate = [today.getFullYear(), today.getMonth() + 1, today.getDate()].join('-');
+
+            dateInput.val(todayDate);
+            timeInput.val(function () {
+                if (today.getHours() < 12) return today.getHours() + 2;
+                return '07'
+            });
+
+            $(document).on('change', '#id_date, #id_time', function () {
+                if (new Date(dateInput.val()).getTime() < new Date(todayDate).getTime()
+                    || (new Date(dateInput.val()).getTime() == new Date(todayDate).getTime()
+                        && timeInput.val() <= today.getHours())) {
+                    $('#submit-button').prop("disabled", true);
+                    notification.html('<div style="margin-bottom: 50px;" class="alert alert-warning">Please choose a future Date</div>')
+                } else {
+                    $('#submit-button').prop("disabled", false);
+                    notification.html("");
+                }
+            });
+
+            $(document).on('click', '#submit-button', function (event) {
+                event.preventDefault();
+                $.ajax({
+                    type: "post",
+                    url: "reserve",
+                    data: $('#reserve_form').serialize(),
+                    success: function (msg) {
+                        notification.html('<div style="margin-bottom: 50px;" class="alert alert-' + msg.tag + '">' + msg.message + '</div>');
+                        if (msg.tag == "success") {
+                            $('#balance').text("Balance: " + msg.balance + " DA");
+                        }
+                    },
+                    error: function (data) {
+                        console.log('An error occurred:');
+                        console.log(data);
+                    },
+                });
+            });
+
+
+            $(document).on('click', '#balance-div', function (event) {
+                event.preventDefault();
+                console.log("heeeeeeeeeeey");
+                $('#balance-div').html = '<input type="number">';
+            });
+
+
+        });
+    </script>
+{% endblock %}

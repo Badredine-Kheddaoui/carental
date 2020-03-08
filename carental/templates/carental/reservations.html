@@ -1,0 +1,53 @@
+{% extends 'carental/base.html' %}
+{% load templatetags staticfiles %}
+
+{% block title %}
+    Reservations
+{% endblock %}
+
+
+{% block body %}
+
+
+    <table id="reservationTable" class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Car</th>
+            <th scope="col">User</th>
+            <th scope="col">Date</th>
+            <th scope="col">Finish Date</th>
+            <th scope="col">Duration (Days)</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <form method="post" action="{% url 'penalize' %}">
+                {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="id" value="{{ reservation.id }}">
+                    {#                    <th scope="row">{{ car.id }}</th>#}
+                    <td>{{ reservation.id }}</td>
+                    <td>{{ reservation.car }}</td>
+                    <td>{{ reservation.user }}</td>
+                    <td>{{ reservation.date }}</td>
+                    <td>{{ reservation.finish_date }}</td>
+                    <td>{{ reservation.duration }} </td>
+                    <td>
+                        <button type="submit" name="action" value="penalize" class="btn btn-danger">Penalize</button>
+{#                        {% if reservation.cancelled|not_yet_cancelled %}#}
+                        <br>
+                        <br>
+                        <button type="submit" name="action" value="cancel" class="btn btn-info">Cancel</button>
+{#                        {% endif %}#}
+                    </td>
+                </tr>
+            </form>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    {#    </form>#}
+
+{% endblock %}

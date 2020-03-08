@@ -1,0 +1,44 @@
+{% extends 'carental/base.html' %}
+{% load templatetags %}
+{% block title %}
+    Update cars
+{% endblock %}
+
+{%  block promotion %}{% endblock %}
+
+{% block body %}
+    <table class="table table-bordered table-fixed ">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col" style="text-align: center" >Brand</th>
+            <th scope="col" style="text-align: center" >Model</th>
+            <th scope="col" style="text-align: center" >Color</th>
+            <th scope="col" style="text-align: center" >Fuel</th>
+            <th scope="col" style="text-align: center" >Mileage</th>
+            <th scope="col" style="text-align: center" >Price</th>
+            <th scope="col" style="text-align: center">Available</th>
+            <th scope="col" style="text-align: center" >Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for car in cars %}
+            <form method="post">
+                {% csrf_token %}
+                <tr>
+                    <input name="id" type="hidden" value="{{ car.id }}">
+                    <td >{{ car.brand }}</td>
+                    <td >{{ car.model }}</td>
+                    <td >{{ car.color }}</td>
+                    <td >{{ car.fuel|fuel_number2str }}</td>
+                    <td style="text-align: center" ><input type="number" name="mileage" class="form-control" value="{{ car.mileage }}"></td>
+                    <td style="text-align: center" ><input type="number" name="price" class="form-control" value="{{ car.price }}"></td>
+                    <td style="text-align: center" ><input type="checkbox" name="available" {% if car.available %} checked="" {% endif %}></td>
+                    <td style="text-align: center" ><button type="submit" class="btn btn-info">Submit</button></td>
+                </tr>
+            </form>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}
