@@ -1,1 +1,2 @@
-/carental/static/* linguist-vendored
+/carental/static/carental/css/* linguist-vendored
+jquery-3.4.1.js linguist-vendored
