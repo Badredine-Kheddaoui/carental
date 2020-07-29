@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}    {% endblock %}</title>
+    <title>{% block title %} {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'carental/css/' %}minty_bootstrap.css">
 
     <script src="{% static 'carental/js/' %}jquery-3.4.1.js"></script>
@@ -63,39 +63,28 @@
 </div>
 
 {% block promotion %}
-    <main role="main" class="container d-flex justify-content-center">
-        <div class="row">
-            <div class="col-md-12">
+<main role="main" class="container d-flex justify-content-center">
+    <div class="row">
+        <div class="col-md-12">
 
-                <div id="notification"></div>
+            <div id="notification"></div>
 
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }}">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
             </div>
+            {% endfor %}
+            {% endif %}
+
         </div>
-    </main>
+    </div>
+</main>
 
 
-    {#    <div class="container-fuiled page">#}
-    {#        <div class="container-fuiled">#}
-    {#            <div class="row">#}
-    {#                <div class="col-md-12 acceuil">#}
-    {#                    <img height="100%" width="100%" src="{% static 'carental/car_images/' %}homeImage.jpg" alt="">#}
-    {#                </div>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#    </div>#}
-
-
-    <script src="{% static 'carental/js/' %}promotions.js"></script>
-    <script src="{% static 'carental/js/' %}penalties.js"></script>
-    <script src="{% static 'carental/js/' %}cancelRes.js"></script>
+<script src="{% static 'carental/js/' %}promotions.js"></script>
+<script src="{% static 'carental/js/' %}penalties.js"></script>
+<script src="{% static 'carental/js/' %}cancelRes.js"></script>
 {% endblock %}
 
 
@@ -103,9 +92,9 @@
 
 {% endblock %}
 
-{#<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"#}
-{#        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"#}
-{#        crossorigin="anonymous"></script>#}
+{#<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" #}
+        {# integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" #}
+        {# crossorigin="anonymous"></script>#}
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>

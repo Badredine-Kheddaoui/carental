@@ -24,7 +24,7 @@ def profile(request):
 
 
 def home(request):
-    return render(request, 'carental/base.html')
+    return render(request, 'carental/index.html')
 
 
 def register(request):
