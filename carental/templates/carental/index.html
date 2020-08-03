@@ -1,24 +1,33 @@
 {% extends "carental/base.html" %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
+{% block style %}
+<style>
+    body {
+        background: url("{% static 'carental/images/' %}home-image.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+</style>
+{% endblock %}
 
 {% block body %}
 
-<div class="container-fuiled page">
-    <div class="container-fuiled">
-        <div class="row">
-<!--            <div class="col-md-3" ></div>-->
-<!--            <div class="col-md-6" style="margin-bottom: 100px">-->
-<!--                <a href="{% url 'cars' %}" id="to-cars">-->
-<!--                    <h1 class="text-md-center">Check our available cars!</h1>-->
-<!--                </a>-->
-<!--            </div>-->
-<!--            <div class="col-md-3" ></div>-->
-            <div class="col-md-12 acceuil">
-                <img height="100%" width="100%" src="{% static 'carental/images/' %}home-image.jpg" alt="">
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="container-fuiled page">-->
+<!--    <div class="container-fuiled">-->
+<!--        <div class="row">-->
+            <!--            <div class="col-md-3" ></div>-->
+            <!--            <div class="col-md-6" style="margin-bottom: 100px">-->
+            <!--                <a href="{% url 'cars' %}" id="to-cars">-->
+            <!--                    <h1 class="text-md-center">Check our available cars!</h1>-->
+            <!--                </a>-->
+            <!--            </div>-->
+            <!--            <div class="col-md-3" ></div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 {% endblock body %}
