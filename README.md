@@ -81,4 +81,8 @@ A website to make rental cars reservations built with Django.
 
 #### Updating cars(only accessible to the admin):
 
+<<<<<<< HEAD
 ![Update cars](Screenshots/Update_cars.png)
+=======
+![Update cars](./Screenshots/Update cars.png)
+>>>>>>> 7fa11111a3af22e747e1eb2f21b79caaa074fca2
