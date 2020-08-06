@@ -16,7 +16,7 @@ A website to make rental cars reservations built with Django.
 
 - go to 'http://127.0.0.1:8000/'
 
-****
+***
 
 ### Tech stack
 - Django on the server side.
@@ -29,8 +29,7 @@ A website to make rental cars reservations built with Django.
 - A custom user model that extends the default Django's with more functionality.
 - An admin panel to add, update and delete users, cars, car sales and reservations.
 - Since most HTML pages have similar sections, They all extend a base HTML page.
-- Notify users if their reservation was cancelled.
-- Notify online users of new car sales.
+- Notify users if their reservation was cancelled and of new car sales.
 
 ***
 
@@ -39,3 +38,47 @@ A website to make rental cars reservations built with Django.
 - Protection against Cross Site Request Forgeries by sending the user a token that has to be returned when submitting the form.
 - Input fields are sanitized to prevent JavaScript injections.
 - Database queries are protected from SQL injection by using query parameterization.
+
+***
+
+### Screenshots
+
+#### The home page:
+
+![home](./Screenshots/home.jpg)
+
+
+
+#### Register:
+
+![register](./Screenshots/register.png)
+
+
+
+#### Login:
+
+![login](./Screenshots/login.png)
+
+
+
+#### The cars page:
+
+![Cars](./Screenshots/Cars.png)
+
+
+
+#### Making a reservation:
+
+![reserve](./Screenshots/reserve.png)
+
+
+
+#### Reservations(only accessible to the admin):
+
+![Reservations](./Screenshots/Reservations.png)
+
+
+
+#### Updating cars(only accessible to the admin):
+
+![Update cars](Screenshots/Update cars.png)
