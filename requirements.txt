@@ -1,6 +1,6 @@
 crispy-forms-foundation==0.8.0
 Django==2.2.24
 django-crispy-forms==1.9.2
-Pillow==8.1.1
+Pillow==8.3.2
 pytz==2020.1
 sqlparse==0.3.1
